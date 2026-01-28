@@ -8,8 +8,10 @@ A modern e-commerce platform built with Next.js 15, Payload CMS, and shadcn/ui c
 - Payload CMS for content management
 - MongoDB database
 - Lexical rich text editor
+- shadcn/ui components
 - Responsive design
 - Modern e-commerce functionality
+- Auto-generated TypeScript types for Payload
 
 ## ⚙️ Requirements
 
@@ -18,6 +20,7 @@ A modern e-commerce platform built with Next.js 15, Payload CMS, and shadcn/ui c
 - **MongoDB** (local or cloud instance)
 - **Payload CMS** v3.71.1
 - **React** 19.x
+- **Tailwind CSS** v4
 - Package manager: npm, yarn, pnpm, or bun
 
 ## 📁 Project Structure
@@ -25,7 +28,7 @@ A modern e-commerce platform built with Next.js 15, Payload CMS, and shadcn/ui c
 ```
 nextjs-ecom/
 ├── .gitignore
-├── components.json
+├── components.json           # shadcn/ui configuration
 ├── eslint.config.mjs
 ├── next.config.ts          # Next.js config with Payload integration
 ├── package-lock.json
@@ -38,20 +41,19 @@ nextjs-ecom/
 ├── app/
 │   ├── (app)/              # Main application routes
 │   │   ├── (home)/
-│   │   │   ├── (home)/
-│   │   │   │   ├── about/
-│   │   │   │   ├── cart/
-│   │   │   │   ├── contact/
-│   │   │   │   ├── product/
-│   │   │   │   ├── search-filters/
-│   │   │   │   ├── footer.tsx
-│   │   │   │   ├── layout.tsx
-│   │   │   │   ├── Navbar-sidebar.tsx
-│   │   │   │   ├── Navbar.tsx
-│   │   │   │   └── page.tsx
-│   │   │   ├── favicon.ico
-│   │   │   ├── globals.css
-│   │   │   └── layout.tsx
+│   │   │   ├── about/      # About page
+│   │   │   ├── cart/       # Shopping cart
+│   │   │   ├── contact/    # Contact page
+│   │   │   ├── product/    # Product pages
+│   │   │   ├── search-filters/ # Search and filtering
+│   │   │   ├── footer.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── Navbar-sidebar.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css     # Global styles
+│   │   └── layout.tsx
 │   ├── (payload)/          # Payload CMS routes
 │   │   ├── admin/          # Admin dashboard
 │   │   │   ├── [[...segments]]/
@@ -59,13 +61,22 @@ nextjs-ecom/
 │   │   ├── api/            # Payload API routes
 │   │   ├── custom.scss     # Custom SCSS for Payload
 │   │   └── layout.tsx
-│   └── my-route/           # Custom route example
+│   └── my-route/           # Custom API route example
+│       └── route.ts
 ├── collections/            # Payload collections
-│   ├── Media.ts            # Media collection
-│   ├── Users.ts            # User collection with auth
-│   └── categories.ts       # Category collection
+│   ├── Media.ts            # Media collection with upload capability
+│   ├── Users.ts            # User collection with authentication
+│   └── categories.ts       # Category collection with hierarchical structure
 ├── components/             # React components
 │   └── ui/                 # shadcn/ui components
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── checkbox.tsx
+│       ├── input.tsx
+│       ├── progress.tsx
+│       ├── scroll-area.tsx
+│       ├── sheet.tsx
+│       └── textarea.tsx
 ├── lib/                    # Utility functions
 │   └── utils.ts
 ├── node_modules/
@@ -102,7 +113,7 @@ nextjs-ecom/
    NEXT_PUBLIC_SERVER_URL=http://localhost:3000
    ```
 
-4. **Generate Payload types** (optional but recommended)
+4. **Generate Payload types** (recommended)
 
    ```bash
    npm run generate:types
@@ -138,12 +149,29 @@ nextjs-ecom/
 ## 🔌 Payload CMS Integration
 
 This project uses Payload CMS v3.71.1 with:
-
 - MongoDB adapter (`@payloadcms/db-mongodb`)
 - Lexical rich text editor (`@payloadcms/richtext-lexical`)
-- Automatic type generation
-- Authentication system
-- File upload capabilities
+- Automatic type generation with `payload-types.ts`
+- Built-in authentication system
+- File upload capabilities with Sharp processing
+- Hierarchical category system
+
+### Collections
+- **Users**: Authentication-enabled user collection
+- **Media**: File upload collection with alt text
+- **Categories**: Hierarchical category system with parent-child relationships
+
+## 🎨 UI Components
+
+The project uses shadcn/ui components:
+- Button
+- Card
+- Checkbox
+- Input
+- Progress
+- Scroll Area
+- Sheet
+- Textarea
 
 ## 🤝 Contributing
 
