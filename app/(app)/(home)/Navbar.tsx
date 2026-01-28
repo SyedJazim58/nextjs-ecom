@@ -34,7 +34,7 @@ const navbarItems = [
     { href: "/contact", children: "Contact" },
     { href: "/cart", children: "Cart" },
 ]
-
+// Navbar component
 function Navbar() {
     const pathname = usePathname();
 
